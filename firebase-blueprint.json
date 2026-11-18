@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "user": {
+      "title": "UserProfile",
+      "description": "User profile with body metrics and contact information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique user ID" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "name": { "type": "string", "maxLength": 50, "description": "User full name" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"], "description": "Gender" },
+        "age": { "type": "number", "description": "Age in years" },
+        "height": { "type": "number", "description": "Height in cm" },
+        "weight": { "type": "number", "description": "Weight in kg" },
+        "phone": { "type": "string", "maxLength": 30, "description": "Contact phone number" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["id", "email", "name"]
+    },
+    "analysisRecord": {
+      "title": "AnalysisRecord",
+      "description": "Motion analysis session record containing kinematics and Gemini feedback",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique analysis record ID" },
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Record timestamp" },
+        "title": { "type": "string", "maxLength": 100, "description": "Analysis title" },
+        "mediaType": { "type": "string", "enum": ["image", "video"], "description": "Media type" },
+        "videoDuration": { "type": "number", "description": "Duration in seconds" },
+        "aspectRatio": { "type": "number", "description": "Width to height aspect ratio" }
+      },
+      "required": ["id", "userId", "createdAt", "title", "mediaType"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "User profile document owned by the authenticated user"
+    },
+    "/users/{userId}/analyses/{analysisId}": {
+      "schema": "analysisRecord",
+      "description": "User's motion analysis sessions and biomechanics records"
+    }
+  }
+}

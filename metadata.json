@@ -1,0 +1,6 @@
+{
+  "name": "카메라 기반 AI 동작 분석 및 운동역학 피드백 시스템",
+  "description": "MediaPipe 스켈레톤 추출, 2점 캘리브레이션, 관절 각도·선형속도·신체질량중심(CoM) 계산 및 Gemini AI 운동역학 피드백 웹앱",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
